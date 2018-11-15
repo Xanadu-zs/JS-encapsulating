@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<div></div>
+		<span></span>
+		<i></i>
+		<li></li>
+		<ul></ul>
+	</div>
+
+	<script>
+		var all = document.getElementsByTagName('*');
+		for(var i = 0; i <all.length; i++) {
+			all[i].setAttribute('this-name',all[i].nodeName);
+		}
+	</script>
+</body>
+</html>

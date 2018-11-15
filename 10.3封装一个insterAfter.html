@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>insertAfter()</title>
+</head>
+<body>
+		<div>
+			<i></i>
+			<b></b>
+			<span></span>
+		</div>
+	<script>
+		//  学会在element.portotypr 好处:this可以指代任何想调用的对象
+		// 实现继承下面都可以用
+		Element.prototype.insertAfter = function (targetNode,afterNode) {
+			var beforeNode = afterNode.nextElementSibling;
+			if (beforeNode == null) {
+				this.appendChild(targetNode);
+			}else{
+				this.insertBefore(targetNode,beforeNode);
+			}
+		}
+		var div = document.getElementsByTagName('div')[0];
+		var b = document.getElementsByTagName('b')[0];
+		var span = document.getElementsByTagName('span')[0];
+		var p = document.createElement('p');
+	</script>
+</body>
+</html>
