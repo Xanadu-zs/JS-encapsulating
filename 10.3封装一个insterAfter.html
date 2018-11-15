@@ -11,8 +11,9 @@
 			<span></span>
 		</div>
 	<script>
-		//  学会在element.portotypr 好处:this可以指代任何想调用的对象
-		// 实现继承下面都可以用
+		//  学会在element.portotypr 
+		//  好处:this可以指代任何想调用的对象
+		//  实现继承对象都可以用
 		Element.prototype.insertAfter = function (targetNode,afterNode) {
 			var beforeNode = afterNode.nextElementSibling;
 			if (beforeNode == null) {
