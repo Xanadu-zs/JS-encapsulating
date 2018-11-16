@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>n个祖先元素节点</title>
+</head>
+
+<body>
+    <div>
+    	<strong>
+    		<span>
+    			<i>
+    				
+    			</i>
+    		</span>
+    	</strong>
+    </div>
+    <script>
+    	function retParent (elem,n) {
+    		while(elem && n) {
+    			elem = elem.parentElement;
+    			n--;
+    		}
+    		return  elem;
+    	}
+    	var i = document.getElementsByTagName('i')[0];
+    </script>
+</body>
+
+</html>
