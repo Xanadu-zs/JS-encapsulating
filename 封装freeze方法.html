@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>freeze</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 1.遍历属性和方法
+		// 2.修改遍历到的数的描述
+		// 3.object.seal();
+		
+		Object.defineProperty(Object,'freezePolyfill',{
+			value:function(obj){
+				var i;
+				for(i in obj) {
+					if (obj.hasOwnProperty(i)) { //判断属性是不是自身的
+						Object.defineProperty(obj,i,{
+							writable: false
+						});
+					}
+				}
+				Object.seal(obj);
+			}
+		})
+
+		深层递归思想!!
+		防止二级属性被修改!
+	</script>
+</body>
+</html>
