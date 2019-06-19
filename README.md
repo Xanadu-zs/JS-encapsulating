@@ -1,1 +1,1 @@
-# JavaScript  常用方法封装
+# JavaScript  常用方法：
