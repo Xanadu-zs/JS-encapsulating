@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Event对象跨浏览器兼容写法</title>
+</head>
+
+<body>
+    <div id="parent">
+        <div id="child">点击我</div>
+    </div>
+    <a href="http://www.baidu.com" id="a">跳转链接</a>
+    <script type="text/javascript">
+    var EventUtil = {
+        // 添加句柄
+        addHandler: function(element, type, handler) {
+            if (element.addEventListener) {
+                element.addEventListener(type, handler, false)
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + type, handler)
+            } else {
+                element['on' + type] = handler
+            }
+        },
+
+        //删除句柄
+        removeHandler: function(element, type, handler) {
+            if (element.removeEventListener) {
+                element.removeEventListener(type, handler, false)
+            } else if (element.detachEvent) {
+                element.detachEvent('on' + type, handler)
+            } else {
+                element['on' + type] = null
+            }
+        },
+
+        //获取兼容所有浏览器的事件对象
+        getEvent: function(event) {
+            return event ? event : window.event;
+        },
+
+
+        //获取事件类型
+        getType: function(event) {
+            return event.type();
+        },
+
+
+        //获取事件来自于那一个元素
+        getTarget: function(event) {
+            return event.target || event.srcElement;
+        },
+
+        //阻止默认行为
+        preventDefault: function(event) {
+            if (event.preventDefault) {
+                event.preventDefault();
+            } else {
+                event.returnValue = false;
+            }
+        },
+
+        //阻止冒泡
+        stopPropagation: function(event) {
+            if (event.stopPropagation) {
+                event.stopPropagation();
+            } else {
+                event.canaelbubble = true;
+            }
+        },
+
+        //键盘keypress兼容
+        getCharCode:function (event) {
+            if (event.charCode == 'number') {
+                return event.charCode;
+            }else {
+                return event.keyCode;
+            }
+
+        }
+    }
+
+    var parent = document.getElementById("parent");
+    EventUtil.addHandler(parent, "click", function(event) {
+        alert("parent被触发了")
+    })
+
+    var child = document.getElementById("child");
+    EventUtil.addHandler(child, "click", function(event) {
+        //alert(111) 
+        alert("child被触发了")
+
+        var target = EventUtil.getTarget(event);
+        console.log(target);
+        //阻止事件冒泡
+        EventUtil.stopPropagation(event)
+    })
+    var a = document.getElementById("a");
+    EventUtil.addHandler(a, "click", function(event) {
+        //阻止默认行为
+        EventUtil.preventDefault(event);
+    })
+    </script>
+</body>
+
+</html>
