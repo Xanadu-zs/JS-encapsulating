@@ -1,1 +1,1 @@
-# JavaScript  常用方法：
+# JavaScript  常用方法
