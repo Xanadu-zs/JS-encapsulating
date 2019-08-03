@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>封装函数丨</title>
-  </head>
-  <body>
-    <script>
-      removeRepeatArray: arr =>
-        arr.filter((item, index, self) => self.indexOf(item) === index)
 
-      // 数组去重
-      upsetArr: arr => arr.sort(() => Math.random() - 0.5)
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>封装函数丨</title>
+</head>
+
+<body>
+  <script>
+    removeRepeatArray: arr =>
+      arr.filter((item, index, self) => self.indexOf(item) === index)
+
+    // 数组去重
+    upsetArr: (arr) => {
+      return arr.sort(() => {
+        return Math.random() - 0.5
+      })
+    }
+
+    // 设置样式
+    css(obj, json) {
+      for (let attr in json) {
+        obj.style[attr] = json[attr]
+      }
+    }
+    //设置html
+    html(obj){
+      if (arguments.length === 1) {
+        return obj.innerHTML;
+      } else if (arguments.length === 2) {
+        obj.innerHTML = arguments[1];
+      }
+    }
+
+  </script>
+</body>
+
 </html>
