@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>apply模拟</title>
+</head>
+
+<body>
+  <script>
+    Function.prototype.apply = function (context, arr) {
+      var context = Object(context) || window
+      context.fn = this
+      var result
+
+      if (!arr) {
+        result = context.fn()
+      } else {
+        var args = []
+        for (let i = 0, len = arr.length; i < len; i++) {
+          args.push('arr[' + i + ']')
+        }
+        result = eval('context.fn(' + args + ')')
+      }
+      delete context.fn
+      return result
+    }
+    //test
+    var foo = {
+      value: 1
+    }
+
+    function bar(name, age) {
+      console.log(name)
+      console.log(age)
+      console.log(this.value)
+    }
+
+    bar.apply(foo, ['bob', 18])
+
+
+  </script>
+
+</body>
+
+</html>

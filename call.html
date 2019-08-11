@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>call</title>
+</head>
+
+<body>
+  <script>
+    Function.prototype.call2 = (context) => {
+      //用this获取调用call的函数
+      context.fn() = this
+      context.fn()
+      delete context.fn;
+    }
+
+    //第二版
+    Function.prototype.call3 = function (context) {
+      context.fn = this;
+      var args = [];
+      for (var i = 1, len = arguments.length; i < len; i++) {
+        args.push('arguments[' + i + ']');
+      }
+      eval('context.fn(' + args + ')')
+      delete context.fn
+    }
+
+    //test
+    var foo = {
+      value: 1
+    }
+
+    function bar(name, age) {
+      console.log(name)
+      console.log(age)
+      console.log(this.value)
+    }
+
+    bar.call3(foo, 'bob', 18)
+
+    //第三版
+
+    Funtion.prototype.call4 = function (context) {
+      var context = context || window;
+      context.fn = this
+
+      var args = [];
+      for (var i = 1, len = arguments.length; i < len; i++) {
+        args.push('arguments[' + i + ']');
+      }
+
+      var result = eval('context.fn(' + args + ')');
+
+      delete context.fn
+      return result;
+    }
+  </script>
+</body>
+
+</html>
