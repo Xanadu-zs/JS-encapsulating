@@ -10,6 +10,13 @@
 
 <body>
   <script>
+    // call核心：
+    // 将函数设为对象的属性
+    // 执行&删除这个函数
+    // 指定this到函数并传入给定参数执行函数
+    // 如果不传入参数，默认指向为 window
+
+
     Function.prototype.call2 = (context) => {
       //用this获取调用call的函数
       context.fn() = this
