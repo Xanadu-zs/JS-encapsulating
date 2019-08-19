@@ -5,13 +5,13 @@ Parent.prototype.getValue = function () {
 	cosnole.log(this.val)
 }
 
-function Child (value) {
-	Parent.call(this,value)
+function Child(value) {
+	Parent.call(this, value)
 }
 
-Child.prototype = Object.create(Parent.prototype,{
-	constructor:{
-		value:Child
+Child.prototype = Object.create(Parent.prototype, {
+	constructor: {
+		value: Child
 	}
 })
 

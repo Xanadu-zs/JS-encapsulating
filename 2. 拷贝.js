@@ -1,3 +1,18 @@
+// 浅拷贝
+
+// ES6拷贝
+var target = { ...source }
+var target2 = { ...source, age=18 }
+
+
+
+
+
+
+// 深拷贝
+JSON.parse(JSON.stringify(obj))
+
+
 function deepCopy(obj) {
   // 判断是否是简单的数据类型
   if (typeof obj == "object") {

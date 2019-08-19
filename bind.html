@@ -10,16 +10,21 @@
 
 <body>
   <script>
-    //bind bind() 方法会创建一个新函数。当这个新函数被调用时，
-    //bind() 的第一个参数将作为它运行时的 this，之后的一序列参数将会在传递的实参前传入作为它的参数
+    //bind bind() 方法会创建一个新函数。当这个新函数被调用时第一个参数将作为它运行时的 this，
+    // 之后的一系列参数将会在传递的实参前传入作为它的参数
 
     //第一版
     Function.prototype.bind1 = function (target) {
       // target 表示形函数内部的this的值
-      var self = this;
-      return function () {
-        return self.apply(target)
+      // 利用闭包创建一个内部函数，返回所谓的新函数
+      return () => {
+        this.call(target)
       }
+      // 同等于   
+      // var self = this;
+      // return function () {
+      //   return self.apply(target)
+      // }
     }
 
     //2
@@ -34,6 +39,8 @@
         return self.apply(context, args.concat(bingArgs))
       }
     }
+
+
 
     // 3
     Function.prototype.bind2 = function (context) {
